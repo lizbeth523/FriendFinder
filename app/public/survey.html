@@ -1,0 +1,55 @@
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Friend Finder</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<h2>Survey Questions</h2>
+			<hr>
+		</header>
+
+		<form method="POST" id="survey">
+			<h3><strong>About You</strong></h3>
+
+			<label for="name">Name (Required)</label><br>
+  			<input type="input" name="name" required><br>
+
+  			<label for="photo-link">Link to Photo (Required)</label><br>
+  			<input type="input" name="photo-link" required><br>
+  			<hr>
+
+  			<h3><strong>Question 1</strong></h3>
+  			<label for="name">question 1 text</label><br>
+  			<div class="dropdown">
+			  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+			  	<span class="caret"></span></button>
+			  	<ul class="dropdown-menu">
+			    	<li>HTML</li>
+			    	<li>CSS</li>
+			    	<li>JavaScript</li>
+			  	</ul>
+			</div>
+
+		</form>
+
+
+	</div> <!-- end div class="contaier" -->
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script
+	src="https://code.jquery.com/jquery-3.2.1.js"
+	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+	crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+</html>
