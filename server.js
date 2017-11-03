@@ -1,59 +1,43 @@
-// dependencies
+// ==============================================================================
+// DEPENDENCIES
+// Series of npm packages that we will use to give our server useful functionality
+// ==============================================================================
+
 var express = require("express");
 var bodyParser = require("body-parser");
-var path = require("path");
 
-// express app
+// ==============================================================================
+// EXPRESS CONFIGURATION
+// This sets up the basic properties for our express server
+// ==============================================================================
+
+// Tells node that we are creating an "express" server
 var app = express();
-app.use('/app', express.static(path.join(__dirname, 'app')));
 
-// for heroku 
+// Sets an initial port. We"ll use this later in our listener
 var PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// BodyParser makes it easy for our server to interpret data sent to it.
+// The code below is pretty standard.
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Survey results for everybody who has filled out the survey
-var friends = [];
+// ================================================================================
+// ROUTER
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
 
-// routes
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "app/public/home.html"));
-});
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
-app.get("/add", function(req, res) {
-  res.sendFile(path.join(__dirname, "app/public/survey.html"));
-});
+// ==============================================================================
+// LISTENER
+// The below code effectively "starts" our server
+// ==============================================================================
 
-// get all
-app.get("/all", function(req, res) {
-  res.json(friends);
-});
-
-// create new
-// app.post("/api/new", function(req, res) {
-//   var newreservation = req.body;
-//  // newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase(); //starwars example, object .routeName - address for next page
-
-//   if(reservations.includes(newreservation)) {
-//      //reservation already exists
-//      console.log("You already have a reservation");
-//      } else {
-//      //doeenst exist
-//       console.log(newreservation);
-//     if (reservations.length < 5) {
-//       reservations.push(newreservation);
-//       console.log("Your reservation has been made.");
-//     } else {
-//       waitList.push(newreservation);
-//       console.log("You have been added to the waiting list.");
-//     }
-// }
-//   res.json(newreservation);
-// });
-
-
-// listener
 app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+  console.log("App listening on PORT: " + PORT);
 });
